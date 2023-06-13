@@ -12,15 +12,11 @@
 <sectiono layout:fragment="custom-content">
     <div class="container">
 
-        <h1 th:if="${project.id == null}">
+        <h1>
             Nowy projekt
-        </h1>
-        <h1 th:if="${project.id != null}">
-            Edycja projektu <span th:text="${project.code}"></span>
         </h1>
 
         <form th:action="@{/projects/new}" th:object="${project}" method="post" role="from">
-            <input type="hidden" th:field="*{id}">
 
             <div class="mb-3 row">
                 <div class="col-4">
@@ -61,7 +57,7 @@
                 Zapisz
             </button>
 
-            <a th:href="@{/templates/projects}" class="btn btn-secondary">
+            <a th:href="@{/projects}" class="btn btn-secondary">
                 Anuluj
             </a>
         </form>
