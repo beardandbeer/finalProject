@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@Table (name = "Project")
 public class Project {
 
     @Id

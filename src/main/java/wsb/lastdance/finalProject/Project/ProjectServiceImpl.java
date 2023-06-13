@@ -1,6 +1,5 @@
 package wsb.lastdance.finalProject.Project;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +8,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-@RequiredArgsConstructor
+
 public class ProjectServiceImpl implements  ProjectService {
     private ProjectRepository projectRepository;
     @Autowired
@@ -29,7 +28,7 @@ public class ProjectServiceImpl implements  ProjectService {
 
     }
 
-    @Override
+   @Override
     public ProjectDto findProjectById(long projectId) {
         Project project = projectRepository.findById(projectId).get();
         return mapToProjectDto(project);
@@ -44,22 +43,6 @@ public class ProjectServiceImpl implements  ProjectService {
     private Project mapToProject(ProjectDto project) {
         Project projectDto = Project.builder()
                 .id(project.getId())
-                .name(project.getName())
-                .code(project.getCode())
-                .description(project.getDescription())
-                .enabled(project.getEnabled())
-                .dateCreated(project.getDateCreated())
-                .build();
-        return projectDto;
-    }
-    /*@Override
-    public void updateProject(ProjectDto projectDto) {
-        Project project = mapTOProject(projectDto);
-        projectRepository.save(project);
-    }
-
-    private Project mapTOProject(ProjectDto project) {
-        Project projectDto = Project.builder()
                 .id(project.getId())
                 .name(project.getName())
                 .code(project.getCode())
@@ -68,7 +51,10 @@ public class ProjectServiceImpl implements  ProjectService {
                 .dateCreated(project.getDateCreated())
                 .build();
         return projectDto;
-    }*/
+    }
+
+
+
 
     private ProjectDto mapToProjectDto(Project project){
         ProjectDto projectDto = ProjectDto.builder()

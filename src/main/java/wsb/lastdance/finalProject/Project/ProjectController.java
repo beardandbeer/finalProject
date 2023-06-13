@@ -1,7 +1,6 @@
 package wsb.lastdance.finalProject.Project;
 
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
+
 public class ProjectController {
 
     private ProjectService projectService;
@@ -28,7 +27,7 @@ public class ProjectController {
     model.addAttribute("projects", projects );
     return "project-list";
     }
-    @GetMapping("/projects/new")
+   @GetMapping("/projects/new")
     public String createProject (Model model){
         Project project = new Project();
         model.addAttribute("project", project);
@@ -39,7 +38,7 @@ public class ProjectController {
     projectService.saveProject(project);
     return "redirect:/projects";
     }
-    @GetMapping("/projects/{projectId}/edit")
+   @GetMapping("/projects/{projectId}/edit")
     public String editProject (@PathVariable("projectId")long projectId, Model model){
         ProjectDto project = projectService.findProjectById(projectId);
         model.addAttribute("project", project);
@@ -53,6 +52,8 @@ public class ProjectController {
     projectService.updateProject(project);
     return "redirect:/projects";
     }
+
+
 
 
 }
