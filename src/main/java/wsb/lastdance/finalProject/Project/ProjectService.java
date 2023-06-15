@@ -5,12 +5,11 @@ import java.util.List;
 public interface ProjectService {
     List<ProjectDto> findAllProject();
 
-    Project saveProject(Project project);
+    Project saveProject(ProjectDto project);
 
-
-   ProjectDto findProjectById(long projectId);
+    ProjectDto findProjectById(Long projectId);
 
     void updateProject(ProjectDto project);
 
-
+    void deleteProject(Long projectId);
 }

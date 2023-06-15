@@ -23,13 +23,13 @@ public class ProjectServiceImpl implements  ProjectService {
     }
 
     @Override
-    public Project saveProject(Project project) {
+    public Project saveProject(ProjectDto projectDto) {
+        Project project = mapToProject(projectDto);
         return projectRepository.save(project);
-
     }
 
-   @Override
-    public ProjectDto findProjectById(long projectId) {
+    @Override
+    public ProjectDto findProjectById(Long projectId) {
         Project project = projectRepository.findById(projectId).get();
         return mapToProjectDto(project);
     }
@@ -38,6 +38,12 @@ public class ProjectServiceImpl implements  ProjectService {
     public void updateProject(ProjectDto projectDto) {
         Project project = mapToProject(projectDto);
         projectRepository.save(project);
+    }
+
+    @Override
+    public void deleteProject(Long projectId) {
+        projectRepository.deleteById(projectId);
+
     }
 
     private Project mapToProject(ProjectDto project) {
@@ -52,9 +58,6 @@ public class ProjectServiceImpl implements  ProjectService {
                 .build();
         return projectDto;
     }
-
-
-
 
     private ProjectDto mapToProjectDto(Project project){
         ProjectDto projectDto = ProjectDto.builder()
