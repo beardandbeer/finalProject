@@ -12,15 +12,11 @@
 <sectiono layout:fragment="custom-content">
     <div class="container">
 
-        <h1 th:if="${project.id == null}">
+        <h1>
             Nowy projekt
-        </h1>
-        <h1 th:if="${project.id != null}">
-            Edycja projektu <span th:text="${project.code}"></span>
         </h1>
 
         <form th:action="@{/projects/new}" th:object="${project}" method="post" role="from">
-            <input type="hidden" th:field="*{id}">
 
             <div class="mb-3 row">
                 <div class="col-4">
@@ -35,6 +31,7 @@
                             class="form-control"
                             id="project-name"
                             th:field="*{name}">
+                    <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
                 </div>
             </div>
 
@@ -47,6 +44,7 @@
                        class="form-control"
                        id="project-code"
                        th:field="*{code}">
+                <p th:if="${#fields.hasErrors('code')}" class="text-danger" th:errors="*{code}"></p>
             </div>
 
             <div class="mb-3">
@@ -55,13 +53,14 @@
                 </label>
 
                 <textarea class="form-control" id="project-description" rows="10" th:field="*{description}"></textarea>
+                <p th:if="${#fields.hasErrors('description')}" class="text-danger" th:errors="*{description}"></p>
             </div>
 
             <button type="submit" class="btn btn-primary">
                 Zapisz
             </button>
 
-            <a th:href="@{/templates/projects}" class="btn btn-secondary">
+            <a th:href="@{/projects}" class="btn btn-secondary">
                 Anuluj
             </a>
         </form>

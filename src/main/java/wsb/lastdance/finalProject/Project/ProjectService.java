@@ -1,23 +1,15 @@
 package wsb.lastdance.finalProject.Project;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public final class ProjectService {
-    @Autowired
-    private final ProjectRepository projectRepository;
+public interface ProjectService {
+    List<ProjectDto> findAllProject();
 
-    public List<Project> findall() {
-        return projectRepository.findAll();
-    }
+    Project saveProject(ProjectDto project);
 
-    public Project saveProject(Project project) {
-        return projectRepository.save(project);
-    }
+    ProjectDto findProjectById(Long projectId);
+
+    void updateProject(ProjectDto project);
+
+    void deleteProject(Long projectId);
 }
-
